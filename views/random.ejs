@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Nilai random: <%=random%></h1>
+    <!-- if dengan ejs -->
+    <% if(random % 2 === 0) { %>
+        <h3>ini genap</h3>
+    
+    <% } else {%>
+            <h3>ini ganjil</h3>
+    <% } %>    
+
+    <!-- ternary if dengan ejs -->
+    <h3>that number is : <%= random%2 === 0 ? 'even' : 'odd' %></h3>
+</body>
+</html>
