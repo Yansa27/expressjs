@@ -29,10 +29,13 @@ const app = express();
 // app.get('*' , (req , res) => {
 //     res.send('halaman tidak di temukan')
 // })
+const tagData = require('./views/data.json');
+const { log } = require('console');
 
 app.set('view engine' , 'ejs');
 app.set('path' , path.join(__dirname , '/views'));
-
+// membuat aset public
+app.use(express.static(path.join(__dirname , '/public')));
 
 app.get('/' , (req , res) => {
     res.render('home')
@@ -44,8 +47,22 @@ app.get('/rand' , (req , res) => {
 })
 
 app.get('/t/:tag' , (req , res) => {
+    
     const {tag} = req.params;
-    res.render('tag' , {tag})
+    const data = tagData[tag];
+    if(data) {
+        res.render('tag' , { data });
+    }else {
+        res.render('notfound' , {tag});
+    }
+})
+
+// mengunakan for of di ejs
+app.get('/cats' , (req , res) => {
+    const cats = [
+        'buso' , 'gembul' , 'gemoy' , 'lala'
+    ];
+    res.render('cats' , {cats})
 })
 app.listen(8080 , () => {
     console.log('server is running on htpp://localhost:8080');
