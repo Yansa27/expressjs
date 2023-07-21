@@ -41,6 +41,13 @@ app.get('/' , (req , res) => {
     res.render('home')
 })
 
+app.get('/order' , (req , res) => {
+    res.send('Methode get is running')
+})
+app.post('/order' , (req , res) => {
+    res.send('Methode post is running')
+})
+
 app.get('/rand' , (req , res) => {
     const num = Math.floor(Math.random() * 10) + 1 ;
     res.render('random' , {random: num})
